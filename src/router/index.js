@@ -1,12 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import AuthView from "../views/AuthView.vue";
-import LoginForm from "../molecules/LoginForm.vue";
-import ResetPasswordStepper from "../organisms/ResetPasswordStepper.vue";
+import AuthView from "../components/views/AuthView.vue";
+import LoginForm from "../components/organisms/LoginForm.vue";
+import ResetPasswordStepper from "../components/organisms/ResetPasswordStepper.vue";
+import MainView from "../components/views/MainView.vue";
+import ActivateProfileForm from "../components/organisms/ActivateProfileForm.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: '/',
+            name: 'main',
+            component: MainView
+        },
+        {
+            path: '/activate',
+            name: 'activate-profile',
+            component: ActivateProfileForm
+        },
+        {
+            path: '/auth',
             name: 'auth',
             children: [
                 {

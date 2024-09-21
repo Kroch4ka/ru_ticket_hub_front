@@ -54,3 +54,15 @@ export const apiResetFinalize = async({ resetPasswordToken, password, passwordCo
     )
     return data
 }
+
+export const apiGetProfile = async(config = {}) => {
+    const url = '/profiles/current'
+    const { data } = await instance.get(url, config)
+    return data
+}
+
+export const apiActivateProfile = async({ name, phoneNumber, config = {} })=> {
+    const url = '/profiles/activate'
+    const { data } = await instance.post(url, {name, phone_number: phoneNumber}, config)
+    return data
+}
