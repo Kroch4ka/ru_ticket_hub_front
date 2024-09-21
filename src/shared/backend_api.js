@@ -33,6 +33,12 @@ export const apiAccountSignUp = async({ password, passwordConfirmation, email, c
     return data
 }
 
+export const apiAccountLogout = async(config = {}) => {
+    const url = '/accounts/log_out'
+    const { data } = await instance.post(url, config)
+    return data
+}
+
 export const apiResetPasswordRequest = async({ email, config = {} }) => {
     const url = '/accounts/reset_password/request'
     const { data } = await instance.post(url, { email }, config)

@@ -7,9 +7,6 @@ import Button from 'primevue/button';
 import {apiAccountLogin} from "../../shared/backend_api.js";
 import {useRouter} from "vue-router";
 import {useProfileStore} from "../../stores/profile.js";
-import useAuth from '../../composables/auth.js'
-
-useAuth()
 
 const router = useRouter()
 const profileStore = useProfileStore()
@@ -45,25 +42,8 @@ const onClickLogIn = async() => {
         </div>
         <div class="flex flex-col gap-2">
           <label for="password">Password</label>
-<<<<<<< HEAD:src/components/molecules/LoginForm.vue
-=======
-<<<<<<< Updated upstream:src/components/molecules/LoginForm.vue
           <Password id="password" v-model="form.password" :feedback="false" aria-describedby="password-help"/>
           <router-link to="reset_password" id="password-help">Forgot password</router-link>
-=======
->>>>>>> f351ff2 (added profile activation):src/components/organisms/LoginForm.vue
-          <Password
-            id="password"
-            v-model="form.password"
-            :feedback="false"
-            aria-describedby="password-help"
-          />
-          <router-link
-            id="password-help"
-            to="/auth/reset_password"
-          >
-            Forgot password
-          </router-link>
         </div>
         <Button
           label="Log in"
