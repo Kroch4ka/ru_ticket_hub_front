@@ -5,6 +5,7 @@ import Router from "./router/index.js";
 import PrimeVue from 'primevue/config';
 import { createPinia } from "pinia";
 import Aura from '@primevue/themes/aura';
+import 'primeicons/primeicons.css'
 
 createApp(App)
     .use(createPinia())

@@ -4,6 +4,7 @@ import LoginForm from "../components/organisms/LoginForm.vue";
 import ResetPasswordStepper from "../components/organisms/ResetPasswordStepper.vue";
 import MainView from "../components/views/MainView.vue";
 import ActivateProfileForm from "../components/organisms/ActivateProfileForm.vue";
+import {useProfileStore} from "../stores/profile.js";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -36,4 +37,16 @@ const router = createRouter({
         }
     ]
 })
+
+router.beforeEach(async(to, from) => {
+    const profileStore = useProfileStore()
+    await profileStore.fetchProfile()
+    if (profileStore.state.isAuthenticated && to.name === 'log-in' || to.name === 'reset-password') {
+        return { name: 'main' }
+    }
+    if (!profileStore.state.isAuthenticated && to.name === 'main') {
+        return { name: 'log-in' }
+    }
+})
+
 export default router

@@ -8,9 +8,6 @@ import {reactive} from "vue";
 import {apiActivateProfile} from "../../shared/backend_api.js";
 import {useProfileStore} from "../../stores/profile.js";
 import {useRouter} from "vue-router";
-import useAuth from '../../composables/auth.js'
-
-useAuth()
 
 const form = reactive({
   name: '',
