@@ -19,20 +19,42 @@ const onClickLogIn = async() => {
 
 <template>
   <Card>
-    <template #title>WelCome Back!</template>
-    <template #subtitle>Please enter your details to sign in</template>
+    <template #title>
+      WelCome Back!
+    </template>
+    <template #subtitle>
+      Please enter your details to sign in
+    </template>
     <template #content>
       <div class="flex flex-col gap-5">
         <div class="flex flex-col gap-2">
           <label for="username">Email</label>
-          <InputText id="username" v-model="form.email" aria-describedby="Email" />
+          <InputText
+            id="username"
+            v-model="form.email"
+            aria-describedby="Email"
+          />
         </div>
         <div class="flex flex-col gap-2">
           <label for="password">Password</label>
-          <Password id="password" v-model="form.password" :feedback="false" aria-describedby="password-help"/>
-          <router-link to="reset_password" id="password-help">Forgot password</router-link>
+          <Password
+            id="password"
+            v-model="form.password"
+            :feedback="false"
+            aria-describedby="password-help"
+          />
+          <router-link
+            id="password-help"
+            to="reset_password"
+          >
+            Forgot password
+          </router-link>
         </div>
-        <Button @click="onClickLogIn" label="Log in" severity="primary" />
+        <Button
+          label="Log in"
+          severity="primary"
+          @click="onClickLogIn"
+        />
       </div>
     </template>
   </Card>
