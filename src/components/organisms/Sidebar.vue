@@ -6,6 +6,7 @@ import ToggleSwitch from "primevue/toggleswitch";
 import {apiAccountLogout} from "../../shared/backend_api.js";
 import {useRouter} from "vue-router";
 import {useProfileStore} from "../../stores/profile.js";
+import checkPermission from "../../shared/check-permission.js";
 
 const isDarkTheme = ref(false)
 const router = useRouter()
@@ -21,8 +22,13 @@ const mainLinks = computed(() => {
       title: "Tickets",
       to: "/tickets",
       icon: "pi-inbox"
+    },
+    {
+      title: "Companies",
+      to: "/companies",
+      icon: "pi-inbox"
     }
-  ]
+  ].filter((link) => checkPermission(link.to, profileStore.state.profile.profileable_type))
 })
 const footerLinks = computed(() => {
   return [
@@ -42,7 +48,7 @@ const onClickLogout = async() => {
 </script>
 
 <template>
-  <div class="max-w-64 h-lvh">
+  <div class="h-lvh col-span-2">
     <div class="pl-5 pb-6 h-lvh flex flex-col justify-between">
       <div>
         <div class="flex pl-0 border-b-2 border-dotted p-5 pr-0 flex-row items-center justify-between">
