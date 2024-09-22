@@ -15,7 +15,7 @@ const router = createRouter({
         },
         {
             path: '/activate',
-            name: 'activate-profile',
+            name: 'activate',
             component: ActivateProfileForm
         },
         {
@@ -41,8 +41,16 @@ const router = createRouter({
 router.beforeEach(async(to, from) => {
     const profileStore = useProfileStore()
     await profileStore.fetchProfile()
+<<<<<<< Updated upstream
     if (profileStore.state.isAuthenticated && to.name === 'log-in' || to.name === 'reset-password') {
         return { name: 'main' }
+=======
+    if (profileStore.state.isAuthenticated && !profileStore.state.profile.active && to.name !== 'activate') {
+        return { name: 'activate' }
+    }
+    if (profileStore.state.isAuthenticated && !checkPermission(to.path, profileStore.state.profile.profileable_type) && to.name !== 'sorry' && to.name !== 'activate') {
+        return { name: 'sorry' }
+>>>>>>> Stashed changes
     }
     if (!profileStore.state.isAuthenticated && to.name === 'main') {
         return { name: 'log-in' }

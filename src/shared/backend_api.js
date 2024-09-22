@@ -1,4 +1,5 @@
 import axios from "axios";
+import config from "tailwindcss/defaultConfig.js";
 
 const instance = axios.create({
     baseURL: 'http://127.0.0.1:3000',
@@ -18,13 +19,13 @@ instance.interceptors.request.use(
 )
 
 export const apiAccountLogin = async({ email, password, config = {} }) => {
-    const url = '/accounts/log_in'
+    const url = '/api/v1/accounts/log_in'
     const { data } = await instance.post(url, { email, password }, config)
     return data
 }
 
 export const apiAccountSignUp = async({ password, passwordConfirmation, email, config = {} }) => {
-    const url = '/accounts/sign_up'
+    const url = '/api/v1/accounts/sign_up'
     const { data } = await instance.post(
         url,
         { password, password_confirmation: passwordConfirmation, email },
@@ -34,25 +35,25 @@ export const apiAccountSignUp = async({ password, passwordConfirmation, email, c
 }
 
 export const apiAccountLogout = async(config = {}) => {
-    const url = '/accounts/log_out'
+    const url = '/api/v1/accounts/log_out'
     const { data } = await instance.post(url, config)
     return data
 }
 
 export const apiResetPasswordRequest = async({ email, config = {} }) => {
-    const url = '/accounts/reset_password/request'
+    const url = '/api/v1/accounts/reset_password/request'
     const { data } = await instance.post(url, { email }, config)
     return data
 }
 
 export const apiResetPasswordVerifyToken = async({ resetPasswordToken, config = {} }) => {
-    const url = '/accounts/reset_password/verify'
+    const url = '/api/v1/accounts/reset_password/verify'
     const { data } = await instance.post(url, { reset_password_token: resetPasswordToken }, config)
     return data
 }
 
 export const apiResetFinalize = async({ resetPasswordToken, password, passwordConfirmation, config = {} }) => {
-    const url = '/accounts/reset_password/finalize'
+    const url = '/api/v1/accounts/reset_password/finalize'
     const { data } = await instance.post(
         url,
         { reset_password_token: resetPasswordToken, password, password_confirmation: passwordConfirmation },
@@ -62,13 +63,19 @@ export const apiResetFinalize = async({ resetPasswordToken, password, passwordCo
 }
 
 export const apiGetProfile = async(config = {}) => {
-    const url = '/profiles/current'
+    const url = '/api/v1/profiles/current'
     const { data } = await instance.get(url, config)
     return data
 }
 
 export const apiActivateProfile = async({ name, phoneNumber, config = {} })=> {
-    const url = '/profiles/activate'
+    const url = '/api/v1/profiles/activate'
     const { data } = await instance.post(url, {name, phone_number: phoneNumber}, config)
+    return data
+}
+
+export const apiGetCompanies = async(config = {}) => {
+    const url = '/api/v1/companies'
+    const { data } = await instance.get(url, config)
     return data
 }

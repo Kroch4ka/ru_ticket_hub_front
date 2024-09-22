@@ -42,13 +42,17 @@ const onClickLogout = async() => {
 </script>
 
 <template>
+<<<<<<< Updated upstream
   <div class="max-w-64 h-lvh">
+=======
+  <div class="h-lvh w-1/6">
+>>>>>>> Stashed changes
     <div class="pl-5 pb-6 h-lvh flex flex-col justify-between">
       <div>
         <div class="flex pl-0 border-b-2 border-dotted p-5 pr-0 flex-row items-center justify-between">
           <div class="flex gap-2 items-center">
             <MainLogo/>
-            <span class="font-bold text-2xl">Botizo</span>
+            <span class="font-bold text-sm">RuTicketHub</span>
           </div>
           <div class="pi pi-step-backward"></div>
         </div>
